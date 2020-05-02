@@ -28,4 +28,4 @@ const state = {
     ]
 }
 
-export default state;
+module.exports = state;

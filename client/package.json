@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --config webpack.config.dev.js --port 3000 --open",
-    "build": "webpack --config webpack.config.dev.js"
+    "prestart:server": "node mock-api/create.mock.db.js",
+    "start:server": "node mock-api/server.api.js",
+    "build": "webpack --config webpack.config.dev.js",
+    "todo": "concurrently \"npm:start:server\" \"npm:start\""
   },
   "keywords": [],
   "author": "",
@@ -19,12 +22,14 @@
     "babel-loader": "^8.1.0",
     "css-loader": "^3.5.3",
     "html-webpack-plugin": "^4.3.0",
+    "json-server": "^0.16.1",
     "style-loader": "^1.2.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "concurrently": "^5.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2"
