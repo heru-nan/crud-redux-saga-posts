@@ -1,11 +1,14 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actions from "../store/actions";
 
-const Post = ({ posts, handleDeletePost }) => {
+const Post = ({ posts, deletePost }) => {
   const { id } = useParams();
+
   const { title, content } = posts.filter((post) =>
     post.id === id ? { post } : null
-  )[0];
+  )[0] || { title: "not found", content: "sorry my friend ❔ " };
   return (
     <div className="container">
       <h1>🐜{title}🐜</h1>
@@ -17,7 +20,7 @@ const Post = ({ posts, handleDeletePost }) => {
         </Link>
         {`  `}
         <Link to="/">
-          <button className="red" onClick={() => handleDeletePost(id)}>
+          <button className="red" onClick={() => deletePost(id)}>
             ‼ delete
           </button>
         </Link>
@@ -26,4 +29,12 @@ const Post = ({ posts, handleDeletePost }) => {
   );
 };
 
-export default Post;
+const mapStateToProps = ({ posts }) => ({
+  posts,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  deletePost: (id) => dispatch(actions.deletePost(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post);
