@@ -14,7 +14,9 @@ function App() {
         <Route exact path="/posts/:id">
           <Post />
         </Route>
+
         <h1>not found</h1>
+        
       </Switch>
     </Router>
   );

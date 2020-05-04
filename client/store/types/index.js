@@ -6,4 +6,5 @@ export const DELETE = `DELETE`;
 
 export const SWITCH_VISIBILITY = `SWITCH_VISIBILITY`;
 export const HANDLE_SUBMIT = `HANDLE_SUBMIT`;
+export const INCREMENT = `INCREMENT`;
 

@@ -5,6 +5,7 @@ const _utils = {
     visibility: false,
     values: [],
     error : "",
+    counter: 0,
 }
 
 const handleSubmit = (values, n) => {
@@ -16,17 +17,19 @@ const handleSubmit = (values, n) => {
     return true;
 }
 
-export const utils = (state = _utils, action) => {
+export const utils = (utils = _utils, action) => {
     switch (action.type) {
         case types.SWITCH_VISIBILITY:
-            return {...state, visibility: !state.visibility }    
+            return {...utils, visibility: !utils.visibility }    
         case types.HANDLE_SUBMIT:
             
             if(handleSubmit(action.values, action.n)){
-                return {...state, error: "all good"}
+                return {...utils, error: "all good"}
             }
-            return {...state, error: "handle submit"};
+            return {...utils, error: "handle submit"};
+        case types.INCREMENT:
+            return {...utils, counter: utils.counter + 1}
         default:
-            return state;
+            return utils;
     }
 }
