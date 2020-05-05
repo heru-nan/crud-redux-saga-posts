@@ -11,14 +11,13 @@ module.exports = {
         publicPath: "/",
     },
     devServer: {
-        historyApiFallback: true,
 
-        // stats: 'minimal',
-        // overlay: true,
-        // historyApiFallback: true,
-        // disableHostCheck: true,
-        // headers: {"Access-Control-Allow-Origin": "*"},
-        // https: false
+        stats: 'minimal',
+        overlay: true,
+        historyApiFallback: true,
+        disableHostCheck: true,
+        headers: {"Access-Control-Allow-Origin": "*"},
+        https: false
     },
     plugins: [
         new htmlWebpackPlugin({
@@ -33,7 +32,18 @@ module.exports = {
                 loader: 'babel-loader',
                 exclude: /node_modules/,
                 options: {
-                presets: ['@babel/preset-env', '@babel/preset-react']
+                    "presets": [
+                        [
+                          "@babel/preset-env", {
+                            "targets": {
+                              "node": "current"
+                            }
+                          }
+                        ],
+                        [
+                            '@babel/preset-react'
+                        ]
+                      ]
                 }
             },
             {

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --config webpack.config.dev.js --port 3000 --open",
+    "start": "webpack-dev-server --config webpack.config.dev.js --port 3000",
     "prestart:server": "node mock-api/create.mock.db.js",
     "start:server": "node mock-api/server.api.js",
     "build": "webpack --config webpack.config.dev.js",
@@ -29,11 +29,13 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "concurrently": "^5.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "redux-saga": "^1.1.3"
   }
 }

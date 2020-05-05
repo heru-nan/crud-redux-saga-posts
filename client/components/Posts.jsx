@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import HiddenForm from "./utils";
 import { connect } from "react-redux";
 import * as actions from "../store/actions";
+import { REQUEST_POSTS } from "../store/types";
 
 const Posts = ({ posts, visibility, switchVisibility }) => {
   return (
@@ -30,7 +31,10 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    switchVisibility: () => dispatch(actions.switchVisibility()),
+    switchVisibility: () => {
+      dispatch({ type: REQUEST_POSTS });
+      dispatch(actions.switchVisibility());
+    },
   };
 };
 

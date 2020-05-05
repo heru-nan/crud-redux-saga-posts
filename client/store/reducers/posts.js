@@ -13,6 +13,10 @@ export const posts = (state = [], action) => {
     switch (action.type) {
         case types.SET_STATE:
             return [...state, {posts: action.posts}];
+        case types.REQUEST_POSTS_ERROR:
+            return [];
+        case types.REQUEST_POSTS_SUCCESS:
+            return [...state, ...action.data]
         case types.HANDLE_SUBMIT:
             if(handleSubmit(action.values, action.n)){
                 return [...state, {title: action.values[0], content: action.values[1], id: "p"+action.values[0]}]

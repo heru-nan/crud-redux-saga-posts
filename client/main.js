@@ -7,7 +7,7 @@ import state from './state.js';
 import {Provider as ReduxProvider} from 'react-redux';
 import configureStore from './store';
 
-const store = configureStore(state);
+const store = configureStore();
 
 
 
