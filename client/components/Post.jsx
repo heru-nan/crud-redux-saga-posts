@@ -10,22 +10,24 @@ const Post = ({ posts, deletePost }) => {
     post.id === id ? { post } : null
   )[0] || { title: "not found", content: "sorry my friend ❔ " };
   return (
-    <div className="container">
-      <h1>🐜{title}🐜</h1>
-      <section dangerouslySetInnerHTML={{ __html: content }} />
-      {` `}
-      <div className="buttons">
-        <Link to="/">
-          <button>back</button>
-        </Link>
-        {`  `}
-        <Link to="/">
-          <button className="red" onClick={() => deletePost(id)}>
-            ‼ delete
-          </button>
-        </Link>
+    <section className="hero is-primary is-fullheight">
+      <div className="hero-body">
+        <h1>🐜{title}🐜</h1>
+        <section dangerouslySetInnerHTML={{ __html: content }} />
+        {` `}
+        <div className="">
+          <Link to="/">
+            <button>back</button>
+          </Link>
+          {`  `}
+          <Link to="/">
+            <button className="" onClick={() => deletePost(id)}>
+              ‼ delete
+            </button>
+          </Link>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

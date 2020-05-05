@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import * as actions from "../store/actions";
 
 const HiddenForm = ({ submit, cancel }) => (
-  <form className="container" onSubmit={submit}>
+  <form className="" onSubmit={submit}>
     <label>
       Title: <br />
       <input type="text" id="title" name="title" />
@@ -15,7 +15,7 @@ const HiddenForm = ({ submit, cancel }) => (
     </label>
     <div>
       <button type="submit">Send</button>
-      <button className="red" onClick={cancel}>
+      <button className="" onClick={cancel}>
         cancel
       </button>
     </div>

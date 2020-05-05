@@ -1,12 +1,5 @@
 import * as types from '../types';
 
-export const  init = (state) => {
-    return {
-        type: types.SET_STATE,
-        posts: state
-    };
-}
-
 export const switchVisibility  = () => {
     return {
         type: types.SWITCH_VISIBILITY,

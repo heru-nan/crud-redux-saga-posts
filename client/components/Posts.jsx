@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import HiddenForm from "./utils";
 import { connect } from "react-redux";
@@ -12,24 +12,37 @@ const Posts = ({
   incrementAsync,
 }) => {
   return (
-    <div className="container">
-      <h1>hello, world for posts 👨🏽‍💻 </h1>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.id}>
-            <Link to={`/posts/${post.id}`}>{post.title} 📂 </Link>
-          </li>
-        ))}
-      </ul>
-      <div className="container">
-        <p>
-          counter: <span style={{ color: "#87f582" }}>{counter}</span>
-        </p>
-        <button onClick={incrementAsync}>IncrementAsync</button>
+    <section className="hero is-primary is-fullheight">
+      <header className="hero-head">
+        <div className="container has-text-centered">
+          <h1 className="title has" style={{ marginTop: "10px" }}>
+            hello, world for posts 👨🏽‍💻
+          </h1>
+        </div>
+      </header>
+      <div className="hero-body">
+        <div className="container">
+          <div className="columns is-centered">
+            <div className="column is-5-tablet is-4-desktop is-3-widescreen">
+              <ul className="list">
+                {posts.map((post) => (
+                  <li className="list-item" key={post.id}>
+                    <Link to={`/posts/${post.id}`}>{post.title} 📂 </Link>
+                  </li>
+                ))}
+              </ul>
+              <button
+                className="button is-primary is-large"
+                onClick={switchVisibility}
+              >
+                More Posts
+              </button>
+              {visibility && <HiddenForm />}
+            </div>
+          </div>
+        </div>
       </div>
-      <button onClick={switchVisibility}>More Posts</button>
-      {visibility && <HiddenForm />}
-    </div>
+    </section>
   );
 };
 
