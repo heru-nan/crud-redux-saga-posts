@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useRef, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 import HiddenForm from "./utils";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import * as actions from "../store/actions";
-import { REQUEST_POSTS } from "../store/types";
+import { REQUEST_POSTS, MESSAGES, CREATE_POSTS } from "../store/types";
 
-const Posts = ({ posts, visibility, switchVisibility }) => {
+const Posts = ({ posts, visibility, switchVisibility, fetchPosts }) => {
+  const firstRender = useRef(true);
+  useLayoutEffect(() => {
+    if (firstRender.current && posts.length === 0) {
+      firstRender.current = false;
+      fetchPosts();
+      return;
+    }
+  });
   return (
     <div className="container">
       <h1>hello, world for posts 👨🏽‍💻 </h1>
@@ -32,8 +40,10 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     switchVisibility: () => {
-      dispatch({ type: REQUEST_POSTS });
       dispatch(actions.switchVisibility());
+    },
+    fetchPosts: () => {
+      dispatch({ type: REQUEST_POSTS });
     },
   };
 };

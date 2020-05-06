@@ -1,30 +1,18 @@
 import * as types from '../types';
 
-const handleSubmit = (values, n) => {
-    for(let i = 0; i < n; i++){
-        if(!values[i]){
-            return false;
-        }
-    }
-    return true;
-}
+const _posts = [];
 
-export const posts = (state = [], action) => {
+export const posts = (posts = _posts, action) => {
     switch (action.type) {
-        case types.SET_STATE:
-            return [...state, {posts: action.posts}];
         case types.REQUEST_POSTS_ERROR:
-            return [];
+            return posts;
         case types.REQUEST_POSTS_SUCCESS:
-            return [...state, ...action.data]
-        case types.HANDLE_SUBMIT:
-            if(handleSubmit(action.values, action.n)){
-                return [...state, {title: action.values[0], content: action.values[1], id: "p"+action.values[0]}]
-              }
-            return state;
-        case types.DELETE:
-            return state.filter(post => post.id !== action.id);
+            return [...posts, ...action.data]
+        case types.CREATE_POSTS_SUCCESS:
+            return [...posts, action.post]
+        case types.CREATE_POSTS_ERROR:
+            return posts;
         default:
-            return state;
+            return posts;
     }
 }

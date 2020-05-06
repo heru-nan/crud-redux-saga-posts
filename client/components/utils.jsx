@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../store/actions";
+import * as postActions from "../store/actions/posts";
 
 const HiddenForm = ({ submit, cancel }) => (
   <form className="container" onSubmit={submit}>
@@ -27,7 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
     e.preventDefault();
     const title = e.target["title"].value;
     const content = `<p>${e.target["content"].value}</p>`;
-    dispatch(actions.handleSubmit([title, content]));
+    dispatch(postActions.createPosts(title, content));
   },
   cancel: () => {
     dispatch(actions.switchVisibility());

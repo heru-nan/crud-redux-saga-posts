@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../store/actions";
 
-const Post = ({ posts, deletePost }) => {
+const Post = ({ posts }) => {
   const { id } = useParams();
 
   const { title, content } = posts.filter((post) =>
@@ -34,7 +34,7 @@ const mapStateToProps = ({ posts }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  deletePost: (id) => dispatch(actions.deletePost(id)),
+  deletePost: () => {},
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);
