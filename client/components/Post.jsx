@@ -1,18 +1,25 @@
-import React from "react";
-import { useParams, Link } from "react-router-dom";
+import React, { useRef, useLayoutEffect } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../store/actions";
+import { REQUEST_POSTS } from "../store/types";
 
-const Post = ({ posts }) => {
-  const { id } = useParams();
+const Post = ({ post, fetchPosts }) => {
+  /*malo*/
 
-  const { title, content } = posts.filter((post) =>
-    post.id === id ? { post } : null
-  )[0] || { title: "not found", content: "sorry my friend ❔ " };
-  return (
+  const firstRender = useRef(true);
+  useLayoutEffect(() => {
+    if (firstRender.current && !post) {
+      firstRender.current = false;
+      fetchPosts();
+      return;
+    }
+  });
+
+  return post ? (
     <div className="container">
-      <h1>🐜{title}🐜</h1>
-      <section dangerouslySetInnerHTML={{ __html: content }} />
+      <h1>🐜{post.title}🐜</h1>
+      <article>{post.description}</article>
       {` `}
       <div className="buttons">
         <Link to="/">
@@ -26,15 +33,22 @@ const Post = ({ posts }) => {
         </Link>
       </div>
     </div>
+  ) : (
+    <p>loading</p>
   );
 };
 
-const mapStateToProps = ({ posts }) => ({
-  posts,
-});
+const mapStateToProps = ({ posts }, { match }) => {
+  const { id } = match.params;
+  const post = posts.filter((post) => post.id === Number(id));
+  return {
+    post: post[0] ? post[0] : null,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   deletePost: () => {},
+  fetchPosts: () => dispatch({ type: REQUEST_POSTS }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

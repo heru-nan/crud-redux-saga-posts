@@ -17,16 +17,16 @@ function *listen(){
 }
 
 function *createPost(action){
-    const {title, content} = action;
-    if(!title || !content){
-        return yield put({type: types.CREATE_POSTS_ERROR, error: "title or content invalid"});
+    const {title, description} = action;
+    if(!title || !description){
+        return yield put({type: types.CREATE_POSTS_ERROR, error: "title or description invalid"});
     }
     try {
-        const res = yield call(axios.post, `${url}/posts`, {title, content});
+        const res = yield call(axios.post, `${url}/posts`, {title, description});
         const {id} = res.data;
         const post = {
             title,
-            content,
+            description,
             id
         }
         

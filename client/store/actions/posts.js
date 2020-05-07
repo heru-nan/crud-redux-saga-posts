@@ -1,7 +1,7 @@
 
 import * as types from '../types';
 
-export const createPosts =  (title, content) => ({
+export const createPosts =  (title, description) => ({
     type: types.CREATE_POSTS,
-    title, content,
+    title, description,
 })

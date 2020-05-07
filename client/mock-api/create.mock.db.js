@@ -1,9 +1,9 @@
 const fs = require('fs');
 const path = require('path');
-const state = require('../state.js');
+const state = require('./state.js');
 
 const {posts} = state;
-const data = JSON.stringify({posts});
+const data = JSON.stringify({posts}, ``);
 const filepath = path.join(__dirname, "db.json");
 
 fs.writeFile(filepath, data, function(err){

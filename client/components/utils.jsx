@@ -10,9 +10,9 @@ const HiddenForm = ({ submit, cancel }) => (
       <input type="text" id="title" name="title" />
     </label>
     <label>
-      Content:
+      Description
       <br />
-      <textarea id="content" name="content"></textarea>
+      <textarea id="description" name="description"></textarea>
     </label>
     <div>
       <button type="submit">Send</button>
@@ -27,8 +27,8 @@ const mapDispatchToProps = (dispatch) => ({
   submit: (e) => {
     e.preventDefault();
     const title = e.target["title"].value;
-    const content = `<p>${e.target["content"].value}</p>`;
-    dispatch(postActions.createPosts(title, content));
+    const description = e.target["description"].value;
+    dispatch(postActions.createPosts(title, description));
   },
   cancel: () => {
     dispatch(actions.switchVisibility());

@@ -8,6 +8,9 @@ body {
   align-items: center;
 }
 
+a:visited {
+  color: black;
+}
 .red {
   background-color: red;
 }
