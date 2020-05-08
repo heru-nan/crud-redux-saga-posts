@@ -1,9 +1,9 @@
 import React, { useRef, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 import HiddenForm from "./utils";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import * as actions from "../store/actions";
-import { REQUEST_POSTS, MESSAGES, CREATE_POSTS } from "../store/types";
+import { REQUEST_POSTS } from "../store/types";
 
 const Posts = ({ posts, visibility, switchVisibility, fetchPosts }) => {
   const firstRender = useRef(true);
@@ -33,7 +33,7 @@ const Posts = ({ posts, visibility, switchVisibility, fetchPosts }) => {
 const mapStateToProps = (state, ownProps) => {
   return {
     posts: state.posts,
-    visibility: state.utils.visibility,
+    visibility: state.utils.visibility["form"],
   };
 };
 
